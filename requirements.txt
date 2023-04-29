@@ -1,18 +1,18 @@
-﻿click==7.1.2
+﻿click
 Flask
-gunicorn==20.1.0
-itsdangerous==1.1.0
-Jinja2==2.11.3
-MarkupSafe==1.1.1
-pandas==1.2.4
-Pillow==8.2.0
-python-dateutil==2.8.1
-pytz==2021.1
-six==1.15.0
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+pandas
+Pillow
+python-dateutil
+pytz
+six
 -f https://download.pytorch.org/whl/torch_stable.html
 torch
 -f https://download.pytorch.org/whl/torch_stable.html
 torchvision
-typing-extensions==3.7.4.3
-Werkzeug==1.0.1
+typing-extensions
+Werkzeug
 
