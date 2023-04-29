@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display Webcam Stream</title>
+ 
+<style>
+#container {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: solid;
+}
+#videoElement {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+}
+</style>
+</head>
+ 
+<body>
+<div id="container">
+        <video id="video" width="500" height="375" autoplay></video>
+        <button id="start-camera">Start Camera</button>
+        
+
+
+    <!-- <form action="/submit" method="POST" enctype="multipart/form-data"> -->
+        <button id="click-photo">Click Photo</button>
+        <canvas id="canvas" width="320" height="240" hidden></canvas>
+    <!-- </form> -->    
+
+        <!-- <input type="file" id="actual-btn" accept="image/*" hidden name="image" />
+        <label for="actual-btn">Choose File</label> -->
+        <img id="file-chosen" />
+        <!-- <input type="file" id="actual-btn" accept="image/*"  name="image" />
+        <p id="img-info" >No detail!!!</p> -->
+
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+            <!-- <input type = "file"  id = "taker" name="image" > -->
+            <!-- <input type="file" id="chooseFile" capture /> -->
+            <input type="file" id="actual-btn" hidden accept="image/*" name="image" capture />
+            <button type="button" class="btn btn-info"><label for="actual-btn">Click to Capture</label></button>
+            <span id="file-chosen">No file chosen</span>
+            <button id="upload" type="submit">submit</button>
+        </form>
+
+	
+</div>
+<script>
+    // const image_data_url = none
+    let camera_button = document.querySelector("#start-camera");
+    let video = document.querySelector("#video");
+    let click_button = document.querySelector("#click-photo");
+    let canvas = document.querySelector("#canvas");
+
+    camera_button.addEventListener('click', async function() {
+        let stream = await navigator.mediaDevices.getUserMedia({ video: {facingMode:'environment'}, audio: false });
+        video.srcObject = stream;
+    });
+
+    click_button.addEventListener('click', function() {
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        let image_data_url = canvas.toDataURL('image/jpeg');
+        // console.log(image_data_url)
+
+        // image_data_url = canvas.toDataURL('image/jpeg');
+
+        const actualBtn = document.getElementById('actual-btn');
+
+        const fileChosen = document.getElementById('file-chosen').src = image_data_url;
+        // const taker = document.getElementById('taker').value=image_data_url;
+
+
+        upload.addEventListener('click', function () {
+            name = image_data_url
+            // image_data_url.textContent = this.files[0].name
+            console.log(this.files[0].name)
+            console.log("bkoop")
+
+        })
+
+
+
+        // data url of the image
+        // console.log(image_data_url);
+    });
+        
+
+
+</script>
+<script>
+
+    export const live = image_data_url
+    console.log(image_data_url)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+openCapture
+{% endblock pagetitle %}
+
+{% block body %}
+    <div>
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+
+                    <center>
+                        <!-- <div class="custom-file overflow-hidden mb-4" style="margin-top: 90px;"> -->
+                            <input type="file" id="actual-btn" hidden accept="image/*" name="image" capture="camera" />
+                            <label for="actual-btn">Capture Image</label>
+                            <span id="file-chosen">No file chosen</span>
+                        <!-- </div> -->
+                    </center>
+                        
+
+                        <!-- End -->
+
+                        <h6 class="text-center mb-4 text-muted">
+                            Simply upload your plant's leaf image and then see the magic of AI.
+                        </h6>
+
+                        <!-- Custom bootstrap upload file-->
+                        <center>
+                            <a class="mx-2"><button type="submit" class="btn btn-outline-success">Submit</button></a>
+                            <br/>
+                            <br/>
+                            <img id="preview" height="300px" width="300px"/>
+
+                        </center>
+                    </form>
+
+    </div>
+	<script>
+            // actualBtn.addEventListener('change',function(){
+            //     document.getElementById('preview').src = this.files[0]
+
+            // })
+
+            const actualBtn = document.getElementById('actual-btn');
+
+            const fileChosen = document.getElementById('file-chosen');
+
+            // actualBtn.addEventListener('change', function () {
+            //     fileChosen.textContent = this.files[0].name
+            //     let imagePrev = 
+            //     document.getElementById('preview').src = this.files[0]
+            //     console.log("lick")
+
+
+
+
+                document.getElementById("actual-btn").onchange = function(e) {
+                fileChosen.textContent = this.files[0].name
+                var file = document.getElementById("actual-btn").files[0];
+                var reader = new FileReader();
+                reader.onload = function() {
+                    console.log(reader.result);
+                    document.getElementById("preview").src = reader.result;
+                    // image editing
+                    // ...
+                    var blob = window.dataURLtoBlob(reader.result);
+                    console.log(blob, new File([blob], "image.png", {
+                    type: "image/png"
+                    }));
+                };
+                reader.readAsDataURL(file);
+};
+
+
+    // })
+    </script>
+{% endblock body %}
+
+  
